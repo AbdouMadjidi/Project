@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Ping Ground.png" type="Texture" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+
+[node name="Players" type="Node"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 199.902, 299.895 )
+texture = ExtResource( 1 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]

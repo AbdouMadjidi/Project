@@ -1,0 +1,180 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Ping Ground.png" type="Texture" id=1]
+[ext_resource path="res://pong tool.png" type="Texture" id=2]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=3]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://pong tool1.png" type="Texture" id=6]
+[ext_resource path="res://Enemy.gd" type="Script" id=7]
+[ext_resource path="res://Game.gd" type="Script" id=8]
+[ext_resource path="res://AGENCYB.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://menu buttom.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47.9736, 14.6388 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 48.3065, 14.6998 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 305.763 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 229.973, 11.6224 )
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hud" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_Player" type="Label" parent="Hud"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -25.946
+margin_top = 92.8647
+margin_right = 21.054
+margin_bottom = 213.865
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.662745, 0, 0.756863, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_Enemy" type="Label" parent="Hud"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -23.5
+margin_top = -221.0
+margin_right = 23.5
+margin_bottom = -100.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.278431, 0.647059, 0.364706, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="MenuButton" parent="Hud"]
+margin_left = 0.0409546
+margin_top = 5.55475
+margin_right = 62.041
+margin_bottom = 61.5547
+icon = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pong_ground" type="Sprite" parent="Hud"]
+show_behind_parent = true
+position = Vector2( 200.818, 301.228 )
+texture = ExtResource( 1 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 202.997, 544.936 )
+script = ExtResource( 3 )
+
+[node name="playerSkin" type="Sprite" parent="Player"]
+position = Vector2( 1, 0 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 2.46809, 2.35591 )
+shape = SubResource( 2 )
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+position = Vector2( 196.278, 56.9357 )
+script = ExtResource( 7 )
+
+[node name="EnemySkin" type="Sprite" parent="Enemy"]
+rotation = 3.14159
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2( -2.01543, -2.42638 )
+shape = SubResource( 3 )
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2( -9.3143, 303.79 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2( 0, -2.67877 )
+shape = SubResource( 4 )
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2( 410.895, 304.188 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2( 0, -2.67877 )
+shape = SubResource( 4 )
+
+[node name="Enemy_goal" type="Area2D" parent="."]
+position = Vector2( 206.766, 636.781 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_goal"]
+position = Vector2( 0, -2.66968 )
+shape = SubResource( 5 )
+
+[node name="Player_goal" type="Area2D" parent="."]
+position = Vector2( 201.755, -33.5561 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_goal"]
+position = Vector2( 0, -2.66968 )
+shape = SubResource( 5 )
+
+[node name="timer_text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -23.5
+margin_top = -60.5002
+margin_right = 23.5
+margin_bottom = 60.5002
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="timer_text"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="timer_text"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -25.0
+margin_right = 200.0
+margin_bottom = 25.0
+color = Color( 0.141176, 0.101961, 0.101961, 0.513726 )
+
+[node name="Ball" parent="." instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="Hud/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="body_entered" from="Enemy_goal" to="." method="_goal" binds= [ "Player" ]]
+[connection signal="body_entered" from="Player_goal" to="." method="_goal" binds= [ "Enemy" ]]
+[connection signal="timeout" from="timer_text/Timer" to="." method="_on_Timer_timeout"]

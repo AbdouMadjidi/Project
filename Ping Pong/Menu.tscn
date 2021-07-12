@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Quit Buttom.png" type="Texture" id=1]
+[ext_resource path="res://Multiplayer Buttom.png" type="Texture" id=2]
+[ext_resource path="res://Start Buttom.png" type="Texture" id=3]
+[ext_resource path="res://Menu.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends VBoxContainer
+
+
+"
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 88.0013
+margin_top = 66.5956
+margin_right = 300.001
+margin_bottom = 542.596
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer"]
+position = Vector2( -88.0013, -66.5956 )
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Sprite"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 403.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start Buttom" type="Button" parent="VBoxContainer"]
+margin_right = 212.0
+margin_bottom = 156.0
+icon = ExtResource( 3 )
+
+[node name="MP Butoom" type="Button" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 212.0
+margin_bottom = 316.0
+icon = ExtResource( 2 )
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 320.0
+margin_right = 212.0
+margin_bottom = 476.0
+icon = ExtResource( 1 )
+
+[connection signal="pressed" from="VBoxContainer/Start Buttom" to="." method="_on_Start_Buttom_pressed"]
+[connection signal="pressed" from="VBoxContainer/MP Butoom" to="." method="_on_MP_Butoom_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
